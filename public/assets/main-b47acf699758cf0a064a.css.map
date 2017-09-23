@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///webpack:///src/containers/App.css"],"names":[],"mappings":"AAAA,KACE,SACA,SAAW,CAGb,aACE,cAAgB","file":"main-b47acf699758cf0a064a.css","sourcesContent":["body {\n  margin: 0;\n  padding: 0;\n}\n\n.app {\n  font-size: 72px;\n}\n\n\n\n// WEBPACK FOOTER //\n// webpack:///src/containers/App.css"],"sourceRoot":""}
