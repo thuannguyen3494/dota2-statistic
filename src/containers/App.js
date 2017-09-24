@@ -4,10 +4,17 @@
 import React from 'react';
 
 import styles from './App.css';
+import Header from '../layouts/Header';
+import Home from './Home/Home';
 
 export default class App extends React.Component {
   render() {
-    return <div className={styles.app}>{this.props.children}</div>;
+    return (
+      <div>
+        <Header/>
+        <Home/>
+      </div>
+    );
   }
 }
 

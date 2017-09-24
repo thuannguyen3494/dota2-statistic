@@ -15,7 +15,7 @@ import {
   createStore,
 } from '../src/redux/createStore';
 import getRoutes from '../src/routes';
-import Default from '../src/layouts/Default';
+import Root from '../src/layouts/Root';
 import { port, apiHost, apiPort } from '../config/env';
 
 const targetUrl = `http://${apiHost}:${apiPort}`;
@@ -63,7 +63,7 @@ app.use((req, res) => {
   const history = syncHistoryWithStore(memoryHistory, store);
 
   function hydrateOnClient() {
-    res.send(`<!doctype html>${ReactDOM.renderToString(<Default assets={webpackIsomorphicTools.assets()} store={store} />)}`);
+    res.send(`<!doctype html>${ReactDOM.renderToString(<Root assets={webpackIsomorphicTools.assets()} store={store} />)}`);
   }
 
   match({ history, routes: getRoutes(store), location: req.originalUrl },
@@ -85,7 +85,7 @@ app.use((req, res) => {
 
       global.navigator = { userAgent: req.headers['user-agent'] };
 
-      res.send(`<!doctype html>${ReactDOM.renderToStaticMarkup(<Default assets={webpackIsomorphicTools.assets()} component={component} store={store} />)}`);
+      res.send(`<!doctype html>${ReactDOM.renderToStaticMarkup(<Root assets={webpackIsomorphicTools.assets()} component={component} store={store} />)}`);
     } else {
       res.status(404).send('Not found');
     }

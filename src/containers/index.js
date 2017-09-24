@@ -1,3 +1,3 @@
 export App from './App';
-export Home from './Home';
+export Home from './Home/Home';
 export NotFound from './NotFound';

@@ -2,12 +2,16 @@
 
 import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'react-router-redux';
+import sagas from "../sagas/index";
+import createSagaMiddleware from 'redux-saga';
 
 function createStoreWithReducer(history, data, reducer) {
+  const sagaMiddleware = createSagaMiddleware();
   const reduxRouterMiddleware = routerMiddleware(history);
 
   const middleware = [
     reduxRouterMiddleware,
+    sagaMiddleware
   ];
 
   let finalCreateStore;
@@ -31,7 +35,7 @@ function createStoreWithReducer(history, data, reducer) {
       store.replaceReducer(require('../reducers'));
     });
   }
-
+  sagaMiddleware.run(sagas);
   return store;
 }
 

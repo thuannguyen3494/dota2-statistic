@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import { webpackHost, webpackPort } from '../../config/env';
 
-export default class Default extends React.Component {
+export default class Root extends React.Component {
   render() {
     const { assets, component, store } = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
@@ -44,13 +44,14 @@ export default class Default extends React.Component {
             }
             charSet="UTF-8"
           />
+          {/* <script src="http://localhost:8097"></script> */}
         </body>
       </html>
     );
   }
 }
 
-Default.propTypes = {
+Root.propTypes = {
   assets: React.PropTypes.object,
   component: React.PropTypes.node,
   store: React.PropTypes.object,
