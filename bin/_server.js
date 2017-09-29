@@ -1,6 +1,7 @@
 /* eslint no-console: 0, react/jsx-filename-extension: 0 */
 
 import express from 'express';
+import mongoose from 'mongoose';
 import http from 'http';
 import httpProxy from 'http-proxy';
 import path from 'path';
@@ -18,6 +19,9 @@ import getRoutes from '../src/routes';
 import Root from '../src/layouts/Root';
 import { port, apiHost, apiPort } from '../config/env';
 
+import serverConfig from '../config/globalVariables';
+import heroes from './routes/hero.routes';
+
 const targetUrl = `http://${apiHost}:${apiPort}`;
 const pretty = new PrettyError();
 const app = express();
@@ -27,6 +31,11 @@ const proxy = httpProxy.createProxyServer({
   ws: true,
 });
 
+// MongoDB Connection
+mongoose.connect(serverConfig.mongoURL, (error) => {
+  useMongoClient: true;
+});
+
 global.__CLIENT__ = false; // eslint-disable-line
 
 app.use('/', express.static(path.resolve(__dirname, '../public')));
@@ -34,6 +43,8 @@ app.use('/', express.static(path.resolve(__dirname, '../public')));
 app.use('/api', (req, res) => {
   proxy.web(req, res, { target: `${targetUrl}/api` });
 });
+
+app.use('/api', heroes);
 
 server.on('upgrade', (req, socket, head) => {
   proxy.ws(req, socket, head);

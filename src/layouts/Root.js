@@ -29,6 +29,7 @@ export default class Root extends React.Component {
               <style dangerouslySetInnerHTML={{ __html: require('../containers/App.css')._style }} /> :
             null
           }
+          <link rel="stylesheet" href="/css/bootstrap.min.css"/>
         </head>
         <body>
           <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
@@ -44,7 +45,6 @@ export default class Root extends React.Component {
             }
             charSet="UTF-8"
           />
-          {/* <script src="http://localhost:8097"></script> */}
         </body>
       </html>
     );

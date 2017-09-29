@@ -76,6 +76,11 @@ module.exports = {
       'src',
     ],
     extensions: ['', '.json', '.js', '.jsx'],
+    modules: [
+      path.join(__dirname, '../src/containers'),
+      'node_modules'
+    ],
+    extensions: ['.js', '.jsx', '.css']
   },
   plugins: [
     // hot reload
