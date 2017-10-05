@@ -38,7 +38,8 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
 
 global.__CLIENT__ = false; // eslint-disable-line
 
-app.use('/', express.static(path.resolve(__dirname, '../public')));
+//app.use('/', express.static(path.resolve(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/api', (req, res) => {
   proxy.web(req, res, { target: `${targetUrl}/api` });
@@ -65,7 +66,7 @@ proxy.on('error', (error, req, res) => {
 });
 
 app.use((req, res) => {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development' || __DEVELOPMENT__) {
     webpackIsomorphicTools.refresh();
   }
 

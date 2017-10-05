@@ -24,12 +24,13 @@ export default class Root extends React.Component {
             />
           )}
           {/* development */}
-          {
+          {/* {
             Object.keys(assets.styles).length === 0 ?
-              <style dangerouslySetInnerHTML={{ __html: require('../containers/App.css')._style }} /> :
+              <style dangerouslySetInnerHTML={{ __html: require('./App.css')._style }} /> :
             null
-          }
+          } */}
           <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+          <link rel="stylesheet" href="/css/custom.css"/>
         </head>
         <body>
           <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
@@ -37,14 +38,7 @@ export default class Root extends React.Component {
             dangerouslySetInnerHTML={{ __html: `window.__data=${serialize(store.getState())};` }}
             charSet="UTF-8"
           />
-          <script
-            src={
-              process.env.NODE_ENV === 'development' ?
-              `http://${webpackHost}:${webpackPort}/assets/main.js` :
-              '/assets/main.js'
-            }
-            charSet="UTF-8"
-          />
+          <script src={assets.javascript.main} charSet="UTF-8"/>
         </body>
       </html>
     );

@@ -2,11 +2,13 @@
 
 import React from 'react';
 import { FormControl, FormGroup, Button } from 'react-bootstrap';
-import styles from './Home.css';
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+
     this.state = {
       value: ''
     }
@@ -22,10 +24,14 @@ export default class Home extends React.Component {
               placeholder="Enter an Steam32 Id"
               onChange={this.handleChange}
             />
-            <Button bsStyle="primary" bsSize="large">Primary button</Button>
+            <Button bsStyle="primary" bsSize="large" onClick={this.handleSubmit}>Primary button</Button>
           </FormGroup>
         </div>
       </div>
     );
+  }
+
+  handleSubmit(){
+    alert("a");
   }
 }

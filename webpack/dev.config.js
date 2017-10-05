@@ -25,14 +25,14 @@ module.exports = {
   },
   output: {
     path: assetsPath,
-    filename: '[name].js',
-    chunkFilename: '[name].js',
+    filename: '[name]-[hash].js',
+    chunkFilename: '[name]-[chunkhash].js',
     publicPath: `http://${webpackHost}:${webpackPort}/assets/`,
   },
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.js?$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel',
       },
@@ -76,11 +76,6 @@ module.exports = {
       'src',
     ],
     extensions: ['', '.json', '.js', '.jsx'],
-    modules: [
-      path.join(__dirname, '../src/containers'),
-      'node_modules'
-    ],
-    extensions: ['.js', '.jsx', '.css']
   },
   plugins: [
     // hot reload
@@ -88,6 +83,8 @@ module.exports = {
     new webpack.IgnorePlugin(/webpack-stats\.json$/),
     new webpack.DefinePlugin({
       __CLIENT__: true,
+      __SERVER__: false,
+      __DEVELOPMENT__: true,
       __DEVTOOLS__: true,
       'process.env': {
         NODE_ENV: '"development"',

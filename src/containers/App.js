@@ -3,7 +3,6 @@
 
 import React from 'react';
 
-import styles from './App.css';
 import Header from '../layouts/Header';
 import Home from './Home/Home';
 

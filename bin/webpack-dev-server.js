@@ -1,6 +1,7 @@
 /* eslint import/no-extraneous-dependencies: 0, no-console: 0 */
 
-import express from 'express';
+// import express from 'express';
+var Express = require('express');
 import webpack from 'webpack';
 
 const { host, port, webpackPort } = require('../config/env');
@@ -21,7 +22,8 @@ const serverOptions = {
   stats: { colors: true },
 };
 
-const app = express();
+// const app = express();
+var app = new Express();
 
 app.use(require('webpack-dev-middleware')(compiler, serverOptions));
 app.use(require('webpack-hot-middleware')(compiler));
